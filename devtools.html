@@ -1,0 +1,33 @@
+<html>
+<body>
+<script type="text/javascript">
+var getSelectedEmberView = function() {
+  // _V is a global of the selected view for experimentation in the console
+  _V = undefined; 
+
+  var id = ($0 || {}).id,
+      view = Ember.View.views[id],
+      data = { __proto__: null };
+  if (view) {
+    _V = view;
+    data.id = id;
+    data.type = view.toString().match(/^<(.*):/)[1];
+    data.view = view;
+  }
+  return data;
+};
+
+chrome.experimental.devtools.panels.elements.createSidebarPane(
+  "Ember View   (on the console: _V)",
+  function(sidebar) {
+    var updatePanel = function () {
+      sidebar.setExpression("(" + getSelectedEmberView.toString() + ")()");
+    }
+
+    updatePanel();
+    chrome.experimental.devtools.panels.elements.onSelectionChanged.addListener(updatePanel);
+  }
+);
+</script>
+</body>
+</html>
