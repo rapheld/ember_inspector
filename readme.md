@@ -1,7 +1,7 @@
 ## Ember Inspector
-### a Google Chrome extension for the Webkit Inspector
 
-Ember Inspector is a sidebar panel which displays information about the Ember view currently selected in the DOM.
+Ember Inspector is a Google Chrome Inspector extension for Ember developers. It displays a sidebar panel in the Inspector
+which provides information about the Ember view backing the currently selected element in the DOM.
 It also assigns the view object to a global variable _V which can then be used within the console for further inspecting.
 
 * Goto chrome://flags/ and enable Experimental Extension APIs. Relaunch your browser
