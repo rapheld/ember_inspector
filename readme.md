@@ -11,3 +11,10 @@ It also assigns the view object to a global variable _V which can then be used w
 * Customizable property watchlist
 * Configurable global variable (change default _V to something else)
 * Display clickable parentView and childViews
+
+
+
+### Release Notes
+#### v1.1
+* Display the first ancestor backed by an Ember view if the selected element does not have one.
+* When displaying an ancestor, the attribute "distance" shows the number of DOM levels it is away from the selected element.

@@ -3,14 +3,26 @@
 <script type="text/javascript">
 var getSelectedEmberView = function() {
   // _V is a global of the selected view for experimentation in the console
-  _V = undefined; 
+  _V = undefined;
 
-  var id = ($0 || {}).id,
-      view = Ember.View.views[id],
+  var level;
+  function findView(elm, n) {
+    if (elm == null) { return undefined; }
+    level = n || 0;
+    var found = Ember.View.views[elm.id];
+    if (found == null) {
+      level++;
+      found = findView(elm.parentElement, level);
+    }
+    return found;
+  }
+
+  var view = findView($0),
       data = { __proto__: null };
   if (view) {
     _V = view;
-    data.id = id;
+    if (level > 0) { data.distance = level; }
+    data.id = view.get('elementId');
     data.type = view.toString().match(/^<(.*):/)[1];
     data.view = view;
   }
@@ -18,9 +30,9 @@ var getSelectedEmberView = function() {
 };
 
 chrome.experimental.devtools.panels.elements.createSidebarPane(
-  "Ember View   (on the console: _V)",
+  "Ember View (_V)",
   function(sidebar) {
-    var updatePanel = function () {
+    function updatePanel() {
       sidebar.setExpression("(" + getSelectedEmberView.toString() + ")()");
     }
 
