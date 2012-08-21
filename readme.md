@@ -12,6 +12,7 @@ It also assigns the view object to a global variable _V which can then be used w
 * Customizable property watchlist
 * Configurable global variable (change default _V to something else)
 * Display clickable parentView and childViews
+* More automatic installation process
 
 ### Release Notes
 #### v1.1
