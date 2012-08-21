@@ -1,7 +1,7 @@
 {
   "name": "Ember View Inspector",
   "version": "1.1.0",
-  "description": "Inspector for Zendesk Lotus",
+  "manifest_version": 2,
   "devtools_page": "devtools.html",
   "permissions":  [
     "experimental"
